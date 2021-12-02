@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets;
 using UnityEngine.UI;
+using Dreamteck.Splines;
 
 public class DrawAndRun : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class DrawAndRun : MonoBehaviour
     private bool pause = false;
     private Vector3 StartPositionCamera;
     private Vector3 StartPosition;
+    [SerializeField] private SplineComputer splineComputer;
     public bool Pause => pause;
     public void SetMenu(bool p)
     {
@@ -49,6 +51,7 @@ public class DrawAndRun : MonoBehaviour
     public void Add(Runner item)
     {
         runners.Add(item);
+        item.transform.position += Vector3.forward*0.05f;
     }
     void InstanceRunners()
     {
@@ -57,6 +60,10 @@ public class DrawAndRun : MonoBehaviour
             runners.Insert(i, new Runner());
             runners[i] = Instantiate(runner, transform);
             runners[i].transform.position = new Vector3(0,2.48f, -8);
+            SplinePoint splinePoint = new SplinePoint();
+            splinePoint.SetPosition(new Vector3(0, 2.48f, -8));
+            splineComputer.SetPoint(i, splinePoint);
+            splineComputer.Rebuild();
             runners[i].Init(UnitBattleIdentity.Runner, this);
         }
     }
