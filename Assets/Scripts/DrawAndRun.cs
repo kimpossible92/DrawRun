@@ -51,7 +51,7 @@ public class DrawAndRun : MonoBehaviour
     public void Add(Runner item)
     {
         runners.Add(item);
-        item.transform.position += Vector3.forward*0.05f;
+        item.transform.position += Vector3.forward*0.1f;
     }
     void InstanceRunners()
     {
