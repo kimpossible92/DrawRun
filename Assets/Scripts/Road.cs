@@ -15,7 +15,6 @@ namespace Assets
             if (_battleidentity == UnitBattleIdentity.Enemy)
             {
                 var obstacle = Instantiate(_obstacle, new Vector3(px1, py1, pz1), Quaternion.identity);
-                obstacle.transform.localScale = new Vector3(numScale, numScale, numScale);
                 obstacle.init(_battleidentity);
                 _Obstacles.Add(obstacle.GetComponent<Obstacle>());
                 FinishPosition = obstacle.transform.position;
@@ -24,7 +23,6 @@ namespace Assets
             else
             {
                 var _bonus = Instantiate(bonus, new Vector3(px1, py1, pz1), Quaternion.identity);
-                _bonus.transform.localScale = new Vector3(numScale, numScale, numScale);
                 _bonus.init(_battleidentity);
                 bonuses.Add(_bonus.GetComponent<Bonus>());
                 FinishPosition = _bonus.transform.position;
